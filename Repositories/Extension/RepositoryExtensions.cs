@@ -1,11 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using App.Repositories.Products;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace App.Repositories.Extension
 {
@@ -27,6 +23,11 @@ namespace App.Repositories.Extension
 
 
             }); //
+            
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>)); // Generic repository'yi de ekliyoruz>
+
+
             return services;
             // Diğer repository'leri de buraya ekleyebilirsiniz
         }

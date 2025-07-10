@@ -1,6 +1,5 @@
-using App.Repositories;
 using App.Repositories.Extension;
-using Microsoft.EntityFrameworkCore;
+using App.Services.Extension;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,7 +10,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddRepositories(builder.Configuration); // Repositories ekleme islemleri
-
+builder.Services.AddServices(builder.Configuration); // Services ekleme islemleri
 
 #region Comments
 /* bi extension yazarak buradaki uzun islemleri kaldirdik*/

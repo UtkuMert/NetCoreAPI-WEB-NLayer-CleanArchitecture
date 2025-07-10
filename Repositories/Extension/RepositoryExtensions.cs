@@ -26,7 +26,7 @@ namespace App.Repositories.Extension
             
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>)); // Generic repository'yi de ekliyoruz>
-
+            services.AddScoped<IUnitOfWork, UnitOfWork>(); // UnitOfWork ekliyoruz
 
             return services;
             // Diğer repository'leri de buraya ekleyebilirsiniz

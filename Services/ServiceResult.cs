@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net;
 
-namespace App.Services
-{
+namespace App.Services;
+
     public class ServiceResult<T>
     {
         public T? Data { get; set; }
@@ -46,4 +41,41 @@ namespace App.Services
         }
 
     }
-}
+
+    public class ServiceResult
+    {
+        public List<string>? ErrorMessage { get; set; }
+
+        public bool IsSuccess => ErrorMessage == null || ErrorMessage.Count == 0;
+        public bool isFail => !IsSuccess;
+
+        public HttpStatusCode Status { get; set; }
+
+        //static factory method to create a ServiceResult 
+        public static ServiceResult Success(HttpStatusCode status = HttpStatusCode.OK)
+        {
+            return new ServiceResult()
+            {
+                Status = status
+            };
+        }
+
+        public static ServiceResult Fail(List<string> errorMessage, HttpStatusCode status = HttpStatusCode.BadRequest)
+        {
+            return new ServiceResult()
+            {
+                ErrorMessage = errorMessage,
+                Status = status
+            };
+        }
+
+        public static ServiceResult Fail(string errorMessage, HttpStatusCode status = HttpStatusCode.BadRequest)
+        {
+            return new ServiceResult()
+            {
+                ErrorMessage = [errorMessage],
+                Status = status
+            };
+        }
+
+    }

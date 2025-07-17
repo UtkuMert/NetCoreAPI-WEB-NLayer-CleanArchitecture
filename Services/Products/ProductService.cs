@@ -65,6 +65,8 @@ namespace App.Services.Products
             product.Name = request.Name;
             product.Price = request.Price;
             product.Stock = request.Stock;
+
+            productRepository.Update(product);
             await unitOfWork.SaveChangesAsync();
             return ServiceResult.Success(HttpStatusCode.NoContent);
         }

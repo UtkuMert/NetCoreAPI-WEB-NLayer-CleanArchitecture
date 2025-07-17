@@ -8,7 +8,7 @@ namespace App.Repositories
      */
     public interface IGenericRepository<T> where T : class
     {
-        IQueryable<T> GetAll();
+        IQueryable<T> GetAll(); // IQueryable oldugu icin direkt pageleme yapilabilir.
         IQueryable<T> Where(Expression<Func<T,bool>> predicate);
         ValueTask<T?> GetByIdAsync(int id);
         ValueTask AddAsync(T entity);

@@ -2,6 +2,11 @@
 {
     public interface IProductService
     {
-        Task<ServiceResult<List<ProductDto>>> GetTopPriceProductAsync(int count);
+        Task<ServiceResult<List<ProductDto>>> GetTopPriceAsync(int count);
+        Task<ServiceResult<List<ProductDto>>> GetAllAsync();
+        Task<ServiceResult<ProductDto?>> GetByIdAsync(int id);
+        Task<ServiceResult<CreateProductResponse>> CreateAsync(CreateProductRequest request);
+        Task<ServiceResult> UpdateAsync(UpdateProductRequest request);
+        Task<ServiceResult> DeleteAsync(int id);
     }
 }

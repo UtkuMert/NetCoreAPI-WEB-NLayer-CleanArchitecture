@@ -55,9 +55,9 @@ namespace App.Services.Products
                 new CreateProductResponse(product.Id));
         }
 
-        public async Task<ServiceResult> UpdateAsync(UpdateProductRequest request)
+        public async Task<ServiceResult> UpdateAsync(int id, UpdateProductRequest request)
         {
-            var product = await productRepository.GetByIdAsync(request.Id);
+            var product = await productRepository.GetByIdAsync(id);
             if (product is null)
             {
                 return ServiceResult.Fail($"Product not found", System.Net.HttpStatusCode.NotFound);
